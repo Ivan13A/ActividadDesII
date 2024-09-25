@@ -12,43 +12,88 @@
     <title>Implementacion JS</title>
     <script>
         function setenta() {
-            var nota1 = parseFloat(document.getElementById('nota1').value)
-            var nota2 = parseFloat(document.getElementById('nota2').value)
-            var nota3 = parseFloat(document.getElementById('nota3').value)
+                var nota1 = parseFloat(document.getElementById('nota1').value);
+                var nota2 = parseFloat(document.getElementById('nota2').value);
+                var nota3 = parseFloat(document.getElementById('nota3').value);
 
-            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
-                alert("Por favor ingrese todas las notas.");
-                return;
+                if (!isNaN(nota1) && !isNaN(nota2) && !isNaN(nota3)) {
+                    var promedioSetenta = ((nota1 + nota2 + nota3) / 3) * 0.7;
+                    document.getElementById('setenta').value = promedioSetenta.toFixed(2);
+                } else {
+                    alert('Por favor ingresa todas las notas del 1 al 3.');
+                }
             }
 
 
-            var promedioSetenta = ((nota1 + nota2 + nota3) / 3) * 0.7;
+            function treinta() {
+                    var setenta = parseFloat(document.getElementById('setenta').value);
+                    var examenFinal = parseFloat(document.getElementById('examenFinal').value);
 
-            alert('El 70% es:' + promedioSetenta);
-            document.getElementById('setenta').value = promedioSetenta
-            
+                    if (!isNaN(setenta) && !isNaN(examenFinal)) {
+                        
+                        var Treinta = examenFinal * 0.3;
+
+                        var definitiva = setenta + Treinta;
+
+                        document.getElementById('definitiva').value = definitiva.toFixed(2);
+
+                        
+                        if (definitiva < 2.0) {
+                            alert('Perdiste la materia');
+                        } else if (definitiva >= 2.0 && definitiva < 3.0) {
+                            alert('Puedes habilitar la materia');
+                        } else if (definitiva >= 3.0) {
+                            alert('Pasaste la materia');
+                        }
+                    } else {
+                        alert('Por favor ingresa el 70% y la nota del examen final.');
+                    }
+                }
+        
+
+
+        function realizarSuma() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = num1 + num2;
+            document.getElementById('resultadoSuma').innerHTML = `Resultado: ${resultado}`;
         }
 
+        
+        function realizarMultiplicacion() {
+            const num3 = parseFloat(document.getElementById('num3').value);
+            const num4 = parseFloat(document.getElementById('num4').value);
 
-        function treinta() {
-            var setenta = parseFloat(document.getElementById('setenta').value)
-            var examenFinal = parseFloat(document.getElementById('examenFinal').value)
+
+            const resultado = num3 * num4;
+            document.getElementById('resultadoMultiplicacion').innerHTML = `Resultado: ${resultado}`;
+        }
+
+        
+        function realizarResta() {
+            const num5 = parseFloat(document.getElementById('num5').value);
+            const num6 = parseFloat(document.getElementById('num6').value);
             
 
-            if (isNaN(examenFinal)) {
-                alert("Por favor ingrese todas las notas.");
+            const resultado = num5 - num6;
+
+           
+
+            document.getElementById('resultadoResta').innerHTML = `Resultado: ${resultado}`;
+        }
+
+        
+        function realizarDivision() {
+            const num7 = parseFloat(document.getElementById('num7').value);
+            const num8 = parseFloat(document.getElementById('num8').value);
+
+            if (num8 === 0) {
+                alert("No se puede dividir entre 0.");
                 return;
             }
 
-
-            var Treinta = Treinta*0.3;
-
-            var definitiva=parseFloat(Treinta)+parseFloat(setenta);
-            
-            document.getElementById('definitiva').value=definitiva
-            if (definitiva<2) {
-                alert('Perdio la materia')
-            }
+            const resultado = num7 / num8;
+            document.getElementById('resultadoDivision').innerHTML = `Resultado: ${resultado}`;
         }
     </script>
 </head>
@@ -57,7 +102,7 @@
     <div class="container border">
         <div class="row">
             <img class="img-fluid rounded mx-auto d-block" style="height: 150px; width: 150px;"
-                src="/node_modules/bootstrap/img/acer-logo.svg" alt="">
+                src="/clase-21-09-2024/img/acer-logo.svg" alt="">
         </div>
         <div class="bg-dark">
             <hr class="dropdown-divider" style="height: 2px;margin-bottom: 5px;width: 100%;">
@@ -74,13 +119,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/node_modules/bootstrap/img/Cars.png" class="d-block w-90 m-auto img-fluid" alt="...">
+                    <img src="/clase-21-09-2024/img/Cars.png" class="d-block w-90 m-auto img-fluid" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="/node_modules/bootstrap/img/Cars2.png" class="d-block w-90 m-auto img-fluid" alt="...">
+                    <img src="/clase-21-09-2024/img/Cars2.png" class="d-block w-90 m-auto img-fluid" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="/node_modules/bootstrap/img/Cars3.png" class="d-block w-90 m-auto img-fluid" alt="...">
+                    <img src="/clase-21-09-2024/img/Cars3.png" class="d-block w-90 m-auto img-fluid" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -111,10 +156,10 @@
                             <input type="text" class="form-control" name="" id="nota1" placeholder="Parcial uno">
                         </div>
                         <div class="btn btn-outline-primary">
-                            <label for="nota2" class="form-label">Segundo Parcia</label>
+                            <label for="nota2" class="form-label">Segundo Parcial</label>
                             <input type="text" class="form-control" name="" id="nota2" placeholder="Parcial dos">
                         </div>
-
+        
                         <div class="btn btn-outline-primary">
                             <label for="nota3" class="form-label">Tercera Nota</label>
                             <input type="text" class="form-control" name="" id="nota3" placeholder="Parcial tres">
@@ -126,115 +171,109 @@
                             <input type="text" class="form-control" name="" id="setenta" placeholder="Setenta">
                         </div>
                         <div class="mb-3">
-                            <button type="button" class="btn btn-outline-primary" onclick="treinta()">Treinta</button>
+                            <label for="examenFinal" class="form-label">Examen Final</label>
                             <input type="text" class="form-control" name="" id="examenFinal" placeholder="treinta">
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary" onclick="treinta()">Calcular definitiva</button>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center py-3">
                         <div class="mb-3">
-                            
-                            <input type="text" class="form-control" name="" id="definitiva" placeholder="definitiva" >
+                            <input type="text" class="form-control" name="" id="definitiva" placeholder="Definitiva">
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <h2>Calculadora</h2>
-
-                <div class="d-flex justify-content-around mb-4">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#suma">Suma</button>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#multiplicar">Multiplicar</button>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#resta">Resta</button>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#division">División</button>
-                </div>
-
-
-                <div class="collapse" id="suma">
-                    <div class="card card-body">
-                        <h4>Suma</h4>
-                        <form id="sumaForm">
-                            <div class="mb-3">
-                                <label for="num1" class="form-label">Número 1</label>
-                                <input type="number" class="form-control" id="num1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="num2" class="form-label">Número 2</label>
-                                <input type="number" class="form-control" id="num2" required>
-                            </div>
-                            <button type="button" class="btn btn-success">Sumar</button>
-                        </form>
-                        <div id="resultadoSuma"></div>
-                    </div>
-                </div>
-
-
-                <div class="collapse" id="multiplicar">
-                    <div class="card card-body">
-                        <h4>Multiplicar</h4>
-                        <form id="multiplicarForm">
-                            <div class="mb-3">
-                                <label for="num3" class="form-label">Número 1 (par)</label>
-                                <input type="number" class="form-control" id="num3" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="num4" class="form-label">Número 2 (par)</label>
-                                <input type="number" class="form-control" id="num4" required>
-                            </div>
-                            <button type="button" class="btn btn-success">Multiplicar</button>
-                        </form>
-                        <div id="resultadoMultiplicacion"></div>
-                    </div>
-                </div>
-
-
-                <div class="collapse" id="resta">
-                    <div class="card card-body">
-                        <h4>Resta</h4>
-                        <form id="restaForm">
-                            <div class="mb-3">
-                                <label for="edad1" class="form-label">Edad 1</label>
-                                <input type="number" class="form-control" id="edad1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="edad2" class="form-label">Edad 2</label>
-                                <input type="number" class="form-control" id="edad2" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="edad3" class="form-label">Edad 3</label>
-                                <input type="number" class="form-control" id="edad3" required>
-                            </div>
-                            <button type="button" class="btn btn-success">Restar</button>
-                        </form>
-                        <div id="resultadoResta"></div>
-                    </div>
-                </div>
-
-
-                <div class="collapse" id="division">
-                    <div class="card card-body">
-                        <h4>División</h4>
-                        <form id="divisionForm">
-                            <div class="mb-3">
-                                <label for="num5" class="form-label">Dividendo</label>
-                                <input type="number" class="form-control" id="num5" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="num6" class="form-label">Divisor</label>
-                                <input type="number" class="form-control" id="num6" required>
-                            </div>
-                            <button type="button" class="btn btn-success">Dividir</button>
-                        </form>
-                        <div id="resultadoDivision"></div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="container">
+        <h2>Calculadora</h2>
+        
+        <div class="d-flex justify-content-around mb-4">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#suma">Suma</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiplicar">Multiplicar</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#resta">Resta</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#division">División</button>
+        </div>
+
+        
+        <div class="collapse" id="suma">
+            <div class="card card-body">
+                <h4>Suma</h4>
+                <form id="sumaForm">
+                    <div class="mb-3">
+                        <label for="num1" class="form-label">Número 1</label>
+                        <input type="number" class="form-control" id="num1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="num2" class="form-label">Número 2</label>
+                        <input type="number" class="form-control" id="num2" required>
+                    </div>
+                    <button type="button" class="btn btn-success" onclick="realizarSuma()">Sumar</button>
+                    <label id="resultadoSuma" class="ms-3"></label>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="collapse" id="multiplicar">
+            <div class="card card-body">
+                <h4>Multiplicar</h4>
+                <form id="multiplicarForm">
+                    <div class="mb-3">
+                        <label for="num3" class="form-label">Número 1 </label>
+                        <input type="number" class="form-control" id="num3" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="num4" class="form-label">Número 2 </label>
+                        <input type="number" class="form-control" id="num4" required>
+                    </div>
+                    <button type="button" class="btn btn-success" onclick="realizarMultiplicacion()">Multiplicar</button>
+                    <label id="resultadoMultiplicacion" class="ms-3"></label>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="collapse" id="resta">
+            <div class="card card-body">
+                <h4>Resta</h4>
+                <form id="restaForm">
+                    <div class="mb-3">
+                        <label for="num5" class="form-label">Número 1</label>
+                        <input type="number" class="form-control" id="num5" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="num6" class="form-label">Número 2</label>
+                        <input type="number" class="form-control" id="num6" required>
+                    </div>
+                    
+                    <button type="button" class="btn btn-success" onclick="realizarResta()">Restar</button>
+                    <label id="resultadoResta" class="ms-3"></label>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="collapse" id="division">
+            <div class="card card-body">
+                <h4>División</h4>
+                <form id="divisionForm">
+                    <div class="mb-3">
+                        <label for="num7" class="form-label">Dividendo</label>
+                        <input type="number" class="form-control" id="num7" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="num8" class="form-label">Divisor</label>
+                        <input type="number" class="form-control" id="num8" required>
+                    </div>
+                    <button type="button" class="btn btn-success" onclick="realizarDivision()">Dividir</button>
+                    <label id="resultadoDivision" class="ms-3"></label>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
