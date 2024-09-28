@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inscripción</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function CalcularEdad() {
+            var hoy = new Date();
+            var cumpleaños = new Date(document.getElementById('fechaNacimiento').value);
+            var edad = hoy.getFullYear() - cumpleaños.getFullYear();
+            var m = hoy.getMonth() - cumpleaños.getMonth();
+
+            if (m < 0 || (m === 0 && hoy.getDate() < cumpleaños.getDate())) {
+                edad--;
+            }
+            document.getElementById('edad').value = edad; 
+
+            if (edad >= 15) {
+                document.getElementById('eventos').style.display = "block";
+            } else {
+                document.getElementById('eventos').style.display = "none";
+            }
+        }
+
+        function precioEvento() {
+            if (document.getElementById(event).value==1) {
+                document.getElementById('precio').value=0;
+            }else if (document.getElementById(event).value==2) {
+                document.getElementById('precio').value=100000;
+            }else{
+                document.getElementById('precio').value=50000;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Inscripciones</h1>
+    <form id="registrationForm" novalidate>
+        
+        <div class="mb-3">
+            <label for="tipoDocumento" class="form-label text-center">Tipo de Documento</label>
+            <select class="form-select" id="tipoDocumento" required>
+                <option value="">Seleccione...</option>
+                <option value="1">Cédula de Ciudadanía</option>
+                <option value="2">Tarjeta de identidad</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="documento" class="form-label">Documento</label>
+            <input type="number" minlength="7" maxlength="10" class="form-control" id="documento" placeholder="Número de documento" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaNacimiento" onblur="CalcularEdad()" required>
+
+            <label for="edad" class="form-label">Edad</label> 
+            <input type="text" class="form-control" id="edad" required> 
+        </div>
+
+        <div class="accordion" id="eventos" > 
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Eventos de intereses
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <select class="form-select" aria-label="defaul select example" id="event" onchange="precioEvento()">
+                        <option selected>Seleccione los eventos</option>
+                        <option value="1">Poesía</option>
+                        <option value="2">Ciclismo</option>
+                        <option value="3">Fútbol</option>
+                    </select>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">precio</label>
+                        <input type="text" class="form-control" id="precio" placeholder="" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
