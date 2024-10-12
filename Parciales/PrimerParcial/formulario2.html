@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function updatePrice() {
+            const productPrices = {
+                'huevos': 500,
+                'pan': 1000,
+                'cafe': 12000
+            };
+
+            const selectedProduct = document.getElementById('producto').value;
+            const price = productPrices[selectedProduct];
+            document.getElementById('precio').value = price;
+
+            const cantidad = document.getElementById('cantidad').value;
+            document.getElementById('total').value = price * cantidad;
+        }
+
+        function updateTotal() {
+            const price = parseFloat(document.getElementById('precio').value) || 0;
+            const cantidad = parseInt(document.getElementById('cantidad').value) || 0;
+            document.getElementById('total').value = price * cantidad;
+        }
+    </script>
+</head>
+<body>
+    <div class="container my-4">
+        <h2>Formulario de Productos</h2>
+        <form>
+            <div class="form-group">
+                <label for="producto">Seleccione un producto:</label>
+                <select class="form-control" id="producto" onchange="updatePrice()" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="huevos">Huevos - 500 pesos</option>
+                    <option value="pan">Pan - 1000 pesos</option>
+                    <option value="cafe">Café - 12000 pesos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="text" class="form-control" id="precio" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidad" min="1" oninput="updateTotal()" required>
+            </div>
+
+            <div class="form-group">
+                <label for="total">Total a pagar:</label>
+                <input type="text" class="form-control" id="total" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Comprar</button>
+        </form>
+    </div>
+</body>
+</html>

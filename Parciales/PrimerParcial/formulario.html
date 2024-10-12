@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Universidad FPSO</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function showProgrammingLanguages() {
+            const program = document.getElementById('programa').value;
+            const languagesDiv = document.getElementById('lenguajesDiv');
+            const imageEditingDiv = document.getElementById('edicionDiv');
+            const vehicleDiv = document.getElementById('vehiculoDiv');
+
+            
+            languagesDiv.style.display = 'none';
+            imageEditingDiv.style.display = 'none';
+            vehicleDiv.style.display = 'none';
+
+            if (program === 'Ing. de sistemas') {
+                languagesDiv.style.display = 'block';
+            } else if (program === 'Ing. Civil') {
+                imageEditingDiv.style.display = 'block';
+            } else if (program === 'Ing. mecánica') {
+                vehicleDiv.style.display = 'block';
+            }
+        }
+
+        function showConyugeInfo() {
+            const estadoCivil = document.querySelector('input[name="estadoCivil"]:checked').value;
+            const conyugeInfo = document.getElementById('conyugeInfo');
+            if (estadoCivil === 'casado' || estadoCivil === 'unionLibre') {
+                conyugeInfo.style.display = 'block';
+            } else {
+                conyugeInfo.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container my-4">
+        
+        <h2>Formulario de Estudiante</h2>
+        <form>
+            <div class="form-group">
+                <label for="codigoEstudiante">Código del Estudiante:</label>
+                <input type="text" class="form-control" id="codigoEstudiante" required>
+            </div>
+
+            <div class="form-group">
+                <label for="programa">Programa Académico:</label>
+                <select class="form-control" id="programa" onchange="showProgrammingLanguages()" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="Ing. de sistemas">Ing. de sistemas</option>
+                    <option value="Ing. Civil">Ing. Civil</option>
+                    <option value="Ing. mecánica">Ing. mecánica</option>
+                </select>
+            </div>
+
+            <div id="lenguajesDiv" style="display:none;" class="form-group">
+                <label for="lenguajes">¿Maneja algún lenguaje de programación?</label><br>
+                <select class="form-control" id="lenguajes" multiple>
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                </select>
+            </div>
+
+            <div id="edicionDiv" style="display:none;" class="form-group">
+                <label for="edicion">¿Qué programas de edición de imágenes maneja?</label><br>
+                <select class="form-control" id="edicion" multiple>
+                    <option value="Photoshop">Photoshop</option>
+                    <option value="GIMP">GIMP</option>
+                    <option value="Paint">Paint</option>
+                </select>
+            </div>
+
+            <div id="vehiculoDiv" style="display:none;" class="form-group">
+                <label>¿Sabe manejar vehículo?</label><br>
+                <label><input type="radio" name="manejar" value="si"> Sí</label>
+                <label><input type="radio" name="manejar" value="no"> No</label>
+            </div>
+
+            <div class="form-group">
+                <label>Estado Civil:</label><br>
+                <label><input type="radio" name="estadoCivil" value="casado" onclick="showConyugeInfo()"> Casado</label>
+                <label><input type="radio" name="estadoCivil" value="soltero" onclick="showConyugeInfo()"> Soltero</label>
+                <label><input type="radio" name="estadoCivil" value="unionLibre" onclick="showConyugeInfo()"> Unión Libre</label>
+            </div>
+
+            <div id="conyugeInfo" style="display:none;">
+                <div class="form-group">
+                    <label for="nombreConyuge">Nombre del Cónyuge:</label>
+                    <input type="text" class="form-control" id="nombreConyuge">
+                </div>
+                <div class="form-group">
+                    <label for="telefonoConyuge">Teléfono del Cónyuge:</label>
+                    <input type="tel" class="form-control" id="telefonoConyuge">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
