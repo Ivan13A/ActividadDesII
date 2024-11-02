@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url();
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="background-color: #e3f2fd;">
+
+        
+        <header class="bg-primary text-white text-center py-3 my-4 rounded">
+            <h1 class="mb-0 ">Bienvenido a Nuestro Sitio Web</h1>
+        </header>
+
+        <!-- Sección de Bienvenida -->
+        <section class="my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="text-primary">Explora Nuestros Servicios</h2>
+                            <p class="text-secondary">Descubre la variedad de servicios que ofrecemos para mejorar tu experiencia. ¡Contáctanos para más información!</p>
+                            <!-- Componente de ayuda personalizado -->
+                            <help-span></help-span>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <notification-button></notification-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario de Ingreso con Cupón y Clave -->
+        <section class="my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h3 class="text-center">Inicia Sesión</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Usuario</label>
+                            <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
+                        </div>
+                        <!-- Componente personalizado de clave encriptada -->
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <encrypted-password-input></encrypted-password-input>
+                        </div>
+                        <!-- Componente personalizado de cupón de descuento -->
+                        <div class="form-group">
+                            <coupon-input></coupon-input>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        
+        <footer class="bg-dark text-white text-center py-3 rounded my-4 ">
+            <p class="mb-0">© 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+        </footer>
+
+    </div> 
+
+
+    <script src="componentes.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
